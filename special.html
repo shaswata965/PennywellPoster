@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Poster</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light penny-nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img alt="logo-img" class="nav-brand" src="img/pennywell-logo.png"/></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link" href="combo.html">Combo</a>
+                <a class="nav-link active" href="#">Specials</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid previewmt-35 mb-35">
+    <div class="row align-items-center">
+        <div class="col-lg-6 preview-container">
+            <div class="paper-container" id="printPoster">
+                <p id="specialText" class="tag-text special-txt">Special</p>
+                <p class="tag-text name-text" id="nameText">Item Name</p>
+                <p class="tag-text name-text3 none-sec" id="nameText3">Item Name</p>
+                <p class="tag-text wght-txt" id="weightText">Weight</p>
+                <p class="tag-text special-price" id="specialPrice">$<span id="decimalPrice" class="special-decimal tag-text">4</span><span id="pointPrice">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;99</span></p>
+                <img src="img/background.png" class="back-img img1" alt="background-img"/>
+                <div id="second-tag" class="second-tag-container invisible">
+                    <p id="specialText2" class="tag-text special-txt2">Special</p>
+                    <p class="tag-text name-text2" id="nameText2">Item Name</p>
+                    <p class="tag-text name-text4 none-sec" id="nameText4">Item Name</p>
+                    <p class="tag-text wght-txt2" id="weightText2">Weight</p>
+                    <p class="tag-text special-price2" id="specialPrice2">$<span id="decimalPrice2" class="special-decimal2 tag-text">4</span><span class="space">&nbsp;</span><span id="pointPrice2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;99</span></p>
+                    <img src="img/background.png" class="back-img img2" alt="background-img"/>
+                </div>
+            </div>
+            <input type="button" value="click" id="posterPrint" onclick="printPoster()">
+        </div>
+        <div class="col-lg-6 col-sm-12" id="first-sticker">
+            <h4 class="text-center">Create First Poster</h4>
+            <div class="container">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10 edit-poster pb-35 pt-35">
+                        <label class="edit-form">
+                            <p>Item Name:</p>
+                            <input type="text" id="itemName" class="form-control poster-input" placeholder="Hershey's Kisses">
+                        </label>
+                        <label class="edit-form">
+                            <p>Item Weight:</p>
+                            <input type="text" id="itemWeight" class="form-control poster-input" placeholder="450gm">
+                        </label>
+                        <label class="edit-form">
+                            <p>Price:</p>
+                            <input type="text" id="itemPrice" class="form-control poster-input" placeholder="3.99">
+                        </label>
+                        <p class="err-msg" id="err"><span class="alert-msg" id="alert">This is the error message</span></p>
+                        <div class="container btn-container">
+                            <div class="row">
+                                <div class="col-lg-1 col-sm-1"></div>
+                                <div class="col-lg-2 col-sm-10">
+                                    <button onclick="updateValue(0)" class="btn btn-outline-primary btn-lg print-btn">Print</button>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-4">
+                                    <button onclick="addSecond()" class="btn btn-outline-primary btn-lg sticker-btn">Add Sticker</button>
+                                </div>
+                                <div class="col-lg-1 col-sm-1"></div>
+                                <div class="col-lg-2 col-sm-1">
+                                    <button onclick="formRefresh()" class="btn btn-outline-primary btn-lg rst-btn">Reset</button>
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 none-sec" id="second-sticker">
+            <h4 class="text-center">Create Second Poster</h4>
+            <div class="container">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10 edit-poster pb-35 pt-35">
+                        <label class="edit-form">
+                            <p>Item Name:</p>
+                            <input type="text" id="itemName2" class="form-control poster-input" placeholder="Hershey's Kisses">
+                        </label>
+                        <label class="edit-form">
+                            <p>Item Weight:</p>
+                            <input type="text" id="itemWeight2" class="form-control poster-input" placeholder="450gm">
+                        </label>
+                        <label class="edit-form">
+                            <p>Price:</p>
+                            <input type="text" id="itemPrice2" class="form-control poster-input" placeholder="3.99">
+                        </label>
+                        <p class="err-msg" id="err2"><span class="alert-msg" id="alert2">This is the error message</span></p>
+                        <div class="container btn-container">
+                            <div class="row">
+                                <div class="col-lg-1 col-sm-1"></div>
+                                <div class="col-lg-2 col-sm-10">
+                                    <button onclick="updateValue2()" class="btn btn-outline-primary btn-lg print-btn">Print</button>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-1 col-sm-1"></div>
+                                <div class="col-lg-2 col-sm-1">
+                                    <button onclick="formRefresh()" class="btn btn-outline-primary btn-lg rst-btn">Reset</button>
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="ftco-footer ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>
+                    Copyright &copy;<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This website is designed and developed <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://shaswataweb.netlify.app/" target="_blank">Shaswata Web</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+
+    function updateValue(sticker){
+        let name = document.getElementById("itemName").value;
+        let wght = document.getElementById("itemWeight").value;
+        let price = document.getElementById("itemPrice").value;
+
+        let alert = document.getElementById("alert");
+        let err = document.getElementById("err");
+        if(name === ""){
+            alert.innerHTML = "Please enter the name of the product."
+            err.classList.add("visible")
+        }else if(wght === ""){
+            alert.innerHTML = "Please enter weight of the products."
+            err.classList.add("visible")
+        }else if(price === ""){
+            alert.innerHTML = "Please enter the special price."
+            err.classList.add("visible")
+        }else{
+            const priceArray = price.split(".");
+
+            let nameArray = name.split(" ");
+            let name1 = name;
+            let name2 = " "
+            let firstPrice = priceArray[0];
+
+            let secondPrice = priceArray[1];
+            if (secondPrice==="00" || secondPrice === "0" || secondPrice === "" || priceArray.length === 1){
+
+                document.getElementById("pointPrice").classList.add("invisible");
+            }
+
+            if (nameArray.length<=1 || (nameArray.join(" ")).length<=22) {
+                name1 = nameArray.join(" ");
+                let len = name1.length;
+                if (len <= 5) {
+                    document.getElementById("nameText").classList.add("name-large");
+                } else if (len >5 && len <= 11) {
+                    document.getElementById("nameText").classList.add("name-medium");
+                }else if(len>11 && len<=17){
+                    document.getElementById("nameText").classList.add("name-small");
+                }else if( len > 17 && len <= 23){
+                    document.getElementById("nameText").classList.add("name-ex-small");
+                }else{
+                    document.getElementById("nameText").classList.add("name-mini");
+                }
+            }else if(nameArray.length>1){
+                let pos = Math.ceil((nameArray.length)/2);
+                stickerStyle(pos);
+            }
+            function stickerStyle(pos){
+                name1 = nameArray.slice(0, pos).join(" ");
+                name2 = nameArray.slice(pos,nameArray.length).join(" ");
+                let len1 = name1.length;
+                let len2 = name2.length;
+
+                document.getElementById("nameText3").classList.remove("none-sec");
+                document.getElementById("weightText").classList.add("weight-double-small");
+
+                if (len1 <= 5) {
+                    document.getElementById("nameText").classList.add("name-double-large");
+                } else if (len1> 5 && len1<= 11) {
+                    document.getElementById("nameText").classList.add("name-double-medium");
+                }else if(len1 > 11 && len1<=17){
+                    document.getElementById("nameText").classList.add("name-double-small");
+                }else if (len1 <= 23){
+                    document.getElementById("nameText").classList.add("name-double-ex-small");
+                }else{
+                    document.getElementById("nameText").classList.add("name-double-mini");
+                }
+
+                if (len2 <= 5) {
+                    document.getElementById("nameText3").classList.add("name-double-large3");
+                } else if (len2> 5 && len2<= 11) {
+                    document.getElementById("nameText3").classList.add("name-double-medium3");
+                }else if(len2 > 11 && len2<=17){
+                    document.getElementById("nameText3").classList.add("name-double-small3");
+                }else if(len2 <= 23){
+                    document.getElementById("nameText3").classList.add("name-double-ex-small3");
+                }else{
+                    document.getElementById("nameText3").classList.add("name-double-mini3");
+                }
+            }
+
+            document.getElementById("nameText").innerHTML = name1;
+            document.getElementById("nameText3").innerHTML = name2;
+            document.getElementById("weightText").innerHTML = wght;
+            document.getElementById("decimalPrice").innerHTML = firstPrice;
+            document.getElementById("pointPrice").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+secondPrice;
+
+            if(sticker === 0){
+                document.getElementById("posterPrint").click();
+            }else{
+                err.classList.remove("visible");
+                document.getElementById("first-sticker").classList.add("none-sec");
+                document.getElementById("second-sticker").classList.remove("none-sec");
+                document.getElementById("second-tag").classList.remove("invisible");
+            }
+        }
+
+    }
+
+    function printPoster() {
+        var printContents = document.getElementById("printPoster").innerHTML;
+        var a = window.open("","","height=900, width=636");
+        a.document.write('<html><head><title></title>');
+        a.document.write('<link rel="stylesheet" href="css/style.css">')
+        a.document.write('<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700;800;900&display=swap" rel="stylesheet">')
+        a.document.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">')
+        a.document.write('</head><body>')
+        a.document.write(printContents)
+        a.document.write('</body></html>')
+        a.focus();
+        setTimeout(function(){a.print();},1000);
+        a.document.close()
+    }
+
+    function addSecond(){
+        updateValue(1);
+    }
+
+    function updateValue2(){
+        let name = document.getElementById("itemName2").value;
+        let wght = document.getElementById("itemWeight2").value;
+        let price = document.getElementById("itemPrice2").value;
+
+        let alert2 = document.getElementById("alert2");
+        let err2 = document.getElementById("err2");
+
+        if(name === ""){
+            alert2.innerHTML = "Please enter the name of the product."
+            err2.classList.add("visible")
+        }else if(wght === ""){
+            alert2.innerHTML = "Please enter the number of products."
+            err2.classList.add("visible")
+        }else if(price === ""){
+            alert2.innerHTML = "Please enter the special price."
+            err2.classList.add("visible")
+        }else{
+            const priceArray = price.split(".");
+
+            let nameArray = name.split(" ");
+            let name1 = name;
+            let name2 = " "
+            let firstPrice = priceArray[0];
+
+            let secondPrice = priceArray[1];
+            if (secondPrice==="00" || secondPrice === "0" || secondPrice === "" || priceArray.length === 1){
+                document.getElementById("pointPrice2").classList.add("invisible");
+            }
+
+            if (nameArray.length<=1 || (nameArray.join(" ")).length<=22) {
+                name1 = nameArray.join(" ");
+                let len = name1.length;
+                if (len <= 5) {
+                    document.getElementById("nameText2").classList.add("name-large2");
+                } else if (len >5 && len <= 11) {
+                    document.getElementById("nameText2").classList.add("name-medium2");
+                }else if(len>11 && len<=17){
+                    document.getElementById("nameText2").classList.add("name-small2");
+                }else if( len > 17 && len <= 23){
+                    document.getElementById("nameText2").classList.add("name-ex-small2");
+                }else{
+                    document.getElementById("nameText2").classList.add("name-mini2");
+                }
+            }else if(nameArray.length>1){
+                let pos = Math.ceil((nameArray.length)/2);
+                stickerStyle(pos);
+            }
+            function stickerStyle(pos) {
+                name1 = nameArray.slice(0, pos).join(" ");
+                name2 = nameArray.slice(pos, nameArray.length).join(" ");
+                let len1 = name1.length;
+                let len2 = name2.length;
+
+                document.getElementById("nameText4").classList.remove("none-sec");
+                document.getElementById("weightText2").classList.add("weight-double-small2");
+                if (len1 <= 11) {
+                    document.getElementById("nameText2").classList.add("name-double-medium2");
+                } else if (len1 > 11 && len1 <= 17) {
+                    document.getElementById("nameText2").classList.add("name-double-small2");
+                } else if (len1 <= 23) {
+                    document.getElementById("nameText2").classList.add("name-double-ex-small2");
+                } else {
+                    document.getElementById("nameText2").classList.add("name-double-mini2");
+                }
+
+                if (len2 <= 5) {
+                    document.getElementById("nameText4").classList.add("name-double-large4");
+                } else if (len2 > 5 && len2 <= 11) {
+                    document.getElementById("nameText4").classList.add("name-double-medium4");
+                } else if (len2 > 11 && len2 <= 17) {
+                    document.getElementById("nameText4").classList.add("name-double-small4");
+                } else if (len2 <= 23) {
+                    document.getElementById("nameText4").classList.add("name-double-ex-small4");
+                } else {
+                    document.getElementById("nameText4").classList.add("name-double-mini4");
+                }
+            }
+
+            document.getElementById("nameText2").innerHTML = name1;
+            document.getElementById("nameText4").innerHTML = name2;
+            document.getElementById("weightText2").innerHTML = wght;
+            document.getElementById("decimalPrice2").innerHTML = firstPrice;
+            document.getElementById("pointPrice2").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+secondPrice;
+
+            document.getElementById("posterPrint").click();
+        }
+
+    }
+
+    function formRefresh(){
+        location.reload();
+    }
+</script>
+</body>
+</html>
