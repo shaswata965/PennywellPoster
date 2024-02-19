@@ -1427,7 +1427,7 @@ font-size: 20px;
    https://www.phpied.com/delay-loading-your-print-css/
    ========================================================================== */
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
 
   .logo-img{
     height: 150px!important;
