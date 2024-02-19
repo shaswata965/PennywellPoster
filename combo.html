@@ -28,21 +28,23 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid previewmt-35 mb-35">
+<div class="container-fluid preview mt-35 mb-35">
     <div class="row align-items-center">
         <div class="col-lg-6 preview-container">
             <div class="paper-container" id="printPoster">
              <p id="posterName" class="tag-text item-txt">Item Name</p>
+             <p class="tag-text item-txt3 none-sec" id="posterName3">Item Name</p>
              <p class="tag-text num-txt" id="posterNumText">Buy <span id="posterNum" class="item-num"> 2</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For</p>
              <p class="tag-text price-txt" id="posterCombo">$<span id="decimalPrice" class="decimal-txt tag-text">4</span><span class="space">&nbsp;</span><span id="pointPrice">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;99</span></p>
-             <p class="tag-text ind-text">each $<span id="singlePrice">2.69</span></p>
+             <p class="tag-text ind-text" id="indTxt">each $<span id="singlePrice">2.69</span></p>
              <p class="tag-text cond-text" id="condition">special condition</p>
             <img src="img/background.png" class="back-img img1" alt="background-img"/>
             <div id="second-tag" class="second-tag-container invisible">
                 <p id="posterName2" class="tag-text item-txt2">Item Name</p>
+                <p class="tag-text none-sec" id="posterName4">Item Name</p>
                 <p class="tag-text num-txt2" id="posterNumText2">Buy <span id="posterNum2" class="item-num2"> 2</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For</p>
                 <p class="tag-text price-txt2" id="posterCombo2">$<span id="decimalPrice2" class="decimal-txt2 tag-text">4</span><span class="space">&nbsp;</span><span id="pointPrice2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;99</span></p>
-                <p class="tag-text ind-text2">each $<span id="singlePrice2">2.69</span></p>
+                <p class="tag-text ind-text2" id="indTxt2">each $<span id="singlePrice2">2.69</span></p>
                 <p class="tag-text cond-text2" id="condition2">special condition</p>
                 <img src="img/background.png" class="back-img img2" alt="background-img"/>
             </div>
@@ -78,16 +80,16 @@
                         <p class="err-msg" id="err"><span class="alert-msg" id="alert">This is the error message</span></p>
                         <div class="container btn-container">
                             <div class="row">
-                                <div class="col-lg-1 col-sm-1"></div>
-                                <div class="col-lg-2 col-sm-10">
+                                <div class="col-1"></div>
+                                <div class="col-xl-2 col-10">
                                     <button onclick="updateValue(0)" class="btn btn-outline-primary btn-lg print-btn">Print</button>
                                 </div>
                                 <div class="col-lg-1"></div>
-                                <div class="col-lg-4">
+                                <div class="col-10 col-xl-4">
                                     <button onclick="addSecond()" class="btn btn-outline-primary btn-lg sticker-btn">Add Sticker</button>
                                 </div>
                                 <div class="col-lg-1 col-sm-1"></div>
-                                <div class="col-lg-2 col-sm-1">
+                                <div class="col-10 col-xl-2">
                                     <button onclick="formRefresh()" class="btn btn-outline-primary btn-lg rst-btn">Reset</button>
                                 </div>
                                 <div class="col-lg-1"></div>
@@ -128,7 +130,7 @@
                 <div class="container btn-container">
                     <div class="row">
                         <div class="col-lg-5 col-sm-1"></div>
-                        <div class="col-lg-2 col-sm-10">
+                        <div class="col-xl-2 col-10">
                             <button onclick="updateValue2()" class="btn btn-outline-primary btn-lg print-btn">Print</button>
                         </div>
                         <div class="col-lg-5 col-sm-1"></div>
@@ -183,52 +185,68 @@
             const priceArray = price.split(".");
 
             let nameArray = name.split(" ");
-            let word = name;
-            let pos = nameArray.indexOf("&");
-            let cond = " "
-            if(pos === -1){
-                cond = "No";
-            }else{
-                cond = "Yes";
-            }
+            let name1 = name;
+            let name2 = " "
 
             let firstPrice = priceArray[0];
 
             let secondPrice = priceArray[1];
             if (secondPrice==="00" || secondPrice === "0" || secondPrice === "" || priceArray.length === 1){
-
                 document.getElementById("pointPrice").classList.add("invisible");
             }
 
-            if (nameArray.length <= 3 && cond !== "Yes" && (nameArray.join(" ")).length <=11 || (nameArray.join(" ")).length <=11) {
-                word = nameArray.join(" ");
-                let len = word.length;
-                if (len <= 5) {
+            if (nameArray.length<=1 || (nameArray.join(" ")).length<=22) {
+                name1 = nameArray.join(" ");
+                let len = name1.length;
+                if (len <= 8) {
                     document.getElementById("posterName").classList.add("single-small");
-                } else if (len <= 11) {
+                } else if (len>8 && len<=14) {
                     document.getElementById("posterName").classList.add("single-medium");
-                } else if (len > 11) {
+                } else if (len>14 && len<=20) {
                     document.getElementById("posterName").classList.add("single-large");
+                }else if(len>20 && len<=27){
+                    document.getElementById("posterName").classList.add("single-ex-large");
                 }
-            }else if(nameArray.length >=4 && cond === "Yes" ){
-                stickerStyle(pos);
-            }else if(nameArray.join(" ").length>11 && cond!=="Yes"){
-                pos = Math.ceil((nameArray.length)/2);
+            }else if(nameArray.length>1){
+                let pos = Math.ceil((nameArray.length)/2);
                 stickerStyle(pos);
             }
             function stickerStyle(pos){
-                nameArray.splice(pos,0,"<br>");
-                word = nameArray.join(" ");
-                document.getElementById("posterName").classList.add("double-small");
-                document.getElementById("posterNumText").classList.add("small-num-text");
-                document.getElementById("posterNum").classList.add("small-num");
-                document.getElementById("decimalPrice").classList.add("small-combo");
-                document.getElementById("posterCombo").classList.add("small-price-txt");
-                document.getElementById("pointPrice").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+secondPrice;
-            }
-            const indArray = indPrice.split(".");
+                name1 = nameArray.slice(0, pos).join(" ");
+                name2 = nameArray.slice(pos,nameArray.length).join(" ");
+                let len1 = name1.length;
+                let len2 = name2.length;
 
-            document.getElementById("posterName").innerHTML = word;
+                document.getElementById("posterName3").classList.remove("none-sec");
+                document.getElementById("posterNumText").classList.add("poster-num-text-small");
+                document.getElementById("posterCombo").classList.add("price-txt-small");
+                document.getElementById("decimalPrice").classList.add("decimal-txt-small");
+                document.getElementById("indTxt").classList.add("ind-txt-small");
+                document.getElementById("condition").classList.add("none-sec");
+
+                if (len1 <= 8) {
+                    document.getElementById("posterName").classList.add("single-double-small");
+                } else if (len1>8 && len1<=14) {
+                    document.getElementById("posterName").classList.add("single-medium");
+                } else if (len1>14 && len1<=20) {
+                    document.getElementById("posterName").classList.add("single-double-large");
+                }else if(len1>20 && len1<=27){
+                    document.getElementById("posterName").classList.add("single-ex-double-large");
+                }
+
+                if(len2<=8){
+                    document.getElementById("posterName3").classList.add("single-double-small3");
+                }else if(len2>8 && len2<= 14){
+                    document.getElementById("posterName3").classList.add("single-double-medium3");
+                }else if(len2>14 && len2<= 20){
+                    document.getElementById("posterName3").classList.add("single-double-large3");
+                }else if(len2>20 && len2<= 27){
+                    document.getElementById("posterName3").classList.add("single-double-ex-large3");
+                }
+            }
+
+            document.getElementById("posterName").innerHTML = name1;
+            document.getElementById("posterName3").innerHTML = name2;
             document.getElementById("posterNum").innerHTML = num;
             document.getElementById("decimalPrice").innerHTML = firstPrice;
             document.getElementById("singlePrice").innerHTML = indPrice;
@@ -294,14 +312,8 @@
             const priceArray = price2.split(".");
 
             let nameArray = name2.split(" ");
-            let word = name2;
-            let pos = nameArray.indexOf("&");
-            let cond = " "
-            if(pos === -1){
-                cond = "No";
-            }else{
-                cond = "Yes";
-            }
+            let name1 = name2;
+            let name3 = " "
 
             let firstPrice = priceArray[0];
 
@@ -311,37 +323,60 @@
                 document.getElementById("pointPrice2").classList.add("invisible");
             }
 
-            if (nameArray.length <= 3 && cond !== "Yes" && (nameArray.join(" ")).length <=11 || (nameArray.join(" ")).length <=11) {
-                let word = nameArray.join(" ");
-                let len = word.length;
-                if (len <= 5) {
-                    document.getElementById("posterName2").classList.add("single-small2");
-                } else if (len <= 11) {
+            if (secondPrice==="00" || secondPrice === "0" || secondPrice === "" || priceArray.length === 1){
+                document.getElementById("pointPrice").classList.add("invisible");
+            }
+
+            if (nameArray.length<=1 || (nameArray.join(" ")).length<=22) {
+                name1 = nameArray.join(" ");
+                let len = name1.length;
+                 if (len>8 && len<=14) {
                     document.getElementById("posterName2").classList.add("single-medium2");
-                } else if (len > 11) {
-                    document.getElementById("posterName2").classList.add("single-large2");
+                } else if (len>14 && len<=20) {
+                    document.getElementById("posterName2").classList.add("single-combo-large2");
+                }else if(len>20 && len<=27){
+                    document.getElementById("posterName2").classList.add("single-ex-large2");
                 }
-            }else if(nameArray.length >=4 && cond === "Yes" ){
-                stickerStyle(pos);
-            }else if(nameArray.join(" ").length>11 && cond!=="Yes"){
-                pos = Math.ceil((nameArray.length)/2);
+            }else if(nameArray.length>1){
+                let pos = Math.ceil((nameArray.length)/2);
                 stickerStyle(pos);
             }
             function stickerStyle(pos){
-                nameArray.splice(pos,0,"<br>");
-                word = nameArray.join(" ");
-                document.getElementById("posterName2").classList.add("double-small2");
-                document.getElementById("posterNumText2").classList.add("small-num-text2");
-                document.getElementById("posterNum2").classList.add("small-num2");
-                document.getElementById("decimalPrice2").classList.add("small-combo2");
-                document.getElementById("posterCombo2").classList.add("small-price-txt2");
-                document.getElementById("pointPrice2").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+secondPrice;
+                name1 = nameArray.slice(0, pos).join(" ");
+                name3 = nameArray.slice(pos,nameArray.length).join(" ");
+                let len1 = name1.length;
+                let len2 = name3.length;
+
+                document.getElementById("posterName4").classList.remove("none-sec");
+                document.getElementById("posterNumText2").classList.add("poster-num-text-small2");
+                document.getElementById("posterCombo2").classList.add("price-txt-small2");
+                document.getElementById("decimalPrice2").classList.add("decimal-txt-small2");
+                document.getElementById("indTxt2").classList.add("ind-txt-small2");
+                document.getElementById("condition2").classList.add("none-sec");
+
+                if (len1 <= 8) {
+                    document.getElementById("posterName2").classList.add("single-double-small2");
+                } else if (len1>8 && len1<=14) {
+                    document.getElementById("posterName2").classList.add("single-double-medium2");
+                } else if (len1>14 && len1<=20) {
+                    document.getElementById("posterName2").classList.add("single-double-large2");
+                }else if(len1>20 && len1<=27){
+                    document.getElementById("posterName2").classList.add("single-ex-double-large2");
+                }
+
+                if(len2<=8){
+                    document.getElementById("posterName4").classList.add("single-double-small4");
+                }else if(len2>8 && len2<= 14){
+                    document.getElementById("posterName4").classList.add("single-double-medium4");
+                }else if(len2>14 && len2<= 20){
+                    document.getElementById("posterName4").classList.add("single-double-large4");
+                }else if(len2>20 && len2<= 27){
+                    document.getElementById("posterName4").classList.add("single-double-ex-large4");
+                }
             }
 
-
-            const indArray = indPrice2.split(".");
-
-            document.getElementById("posterName2").innerHTML = word;
+            document.getElementById("posterName2").innerHTML = name1;
+            document.getElementById("posterName4").innerHTML = name3;
             document.getElementById("posterNum2").innerHTML = num2;
             document.getElementById("decimalPrice2").innerHTML = firstPrice;
             document.getElementById("singlePrice2").innerHTML = indPrice2;
