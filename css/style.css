@@ -825,9 +825,13 @@ font-size: 15px;
 }
 
 .name-double-ex-small2{
+  font-size: 12px;
+  left: 150px;
 }
 
 .name-double-mini2{
+  font-size: 10px;
+  left: 135px;
 }
 
 .name-double-medium4{
@@ -846,6 +850,21 @@ font-size: 20px;
   left: 150px;
   top: 15px;
 
+}
+
+.name-double-small4{
+  left: 150px;
+}
+
+.name-double-ex-small4{
+  font-size: 15px;
+  left: 133px;
+}
+
+.name-double-mini4{
+  font-size: 12px;
+  left: 130px;
+  top: 23px;
 }
 
 .name-ex-small2{
@@ -876,6 +895,7 @@ font-size: 20px;
 .special-decimal2{
   font-size: 75px;
   top:-20px;
+  left: 10px;
 }
 
 /* ==========================================================================
@@ -1297,6 +1317,7 @@ font-size: 20px;
     left: 160px;
   }
 
+
   .name-double-medium3{
     font-size: 35px;
     top: 205px;
@@ -1327,9 +1348,51 @@ font-size: 20px;
   }
 
   .name-text2{
-    font-size: 45px;
+    font-size: 40px;
     top: 40px;
     left: 290px;
+  }
+
+  .name-double-small2{
+    font-size: 38px;
+    left: 250px;
+  }
+
+  .name-double-ex-small2{
+    font-size: 28px;
+    left: 250px;
+  }
+
+  .name-double-mini2{
+    font-size: 23px;
+    left: 245px;
+  }
+
+  .weight-double-small2{
+    top:110px!important;
+  }
+
+  .name-text4{
+    font-size: 40px;
+    top: 65px;
+    left: 330px;
+  }
+
+  .name-double-medium4{
+    left: 300px;
+  }
+
+  .name-double-small4{
+    left: 250px;
+  }
+
+  .name-double-ex-small4{
+    font-size: 32px;
+    left: 240px;
+  }
+
+  .name-double-mini4{
+    font-size: 24px;
   }
 
   .name-large2{
@@ -1378,8 +1441,8 @@ font-size: 20px;
 
   .special-decimal2{
     font-size: 160px;
-    right: 50px;
     top: -30px;
+    left: 30px;
   }
 
 }
